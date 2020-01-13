@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
     # providers enabled:
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.linkedin_oauth2',
 
 ]
 
@@ -158,3 +158,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
