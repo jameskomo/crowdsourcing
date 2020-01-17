@@ -31,6 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'freelance_app',
+    'users',
+    'bootstrap4',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,11 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'freelance_app',
-    'users',
-    'bootstrap4',
-    'crispy_forms',
+    'allauth.socialaccount',  
     
 
     # providers enabled:
@@ -63,7 +63,7 @@ SOCIALACCOUNT_PROVIDERS = {
         # credentials, or list them here:
         'APP': {
             'client_id': '643086416054-5uqa120uthk9u99nkr23t3r9i3gp7anf.apps.googleusercontent.com',
-            'secret': 'G_bw88oMOCJrwPY_vYy2PPFj',
+            'secret': 'qShTF7Uk5KGAnejrRD8M13Uf',
             'key': ''
         }
     }
@@ -121,6 +121,8 @@ DATABASES = {
     }
 }
 
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -158,7 +160,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# configuring the location for media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
