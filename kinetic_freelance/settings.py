@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'bootstrap4',
     'crispy_forms',
+    
 
     # providers enabled:
     'allauth.socialaccount.providers.google',
@@ -160,3 +161,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'none'
