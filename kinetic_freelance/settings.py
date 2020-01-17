@@ -62,8 +62,8 @@ SOCIALACCOUNT_PROVIDERS = {
         # (``socialaccount`` app) containing the required client
         # credentials, or list them here:
         'APP': {
-            'client_id': '643086416054-5uqa120uthk9u99nkr23t3r9i3gp7anf.apps.googleusercontent.com',
-            'secret': 'qShTF7Uk5KGAnejrRD8M13Uf',
+            'client_id': 'mykey',
+            'secret': 'mysecretkey',
             'key': ''
         }
     }
@@ -122,7 +122,9 @@ DATABASES = {
 }
 
 # Email Backend
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
