@@ -22,7 +22,7 @@ class FreelancerDataForm(forms.ModelForm):
     skills=forms.CharField(max_length=200)
     Availability = forms.ChoiceField(choices=availability)
     grades=forms.ModelMultipleChoiceField(queryset = Grade.objects.all())
-    documents=forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+#     documents=forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
     completed=forms.BooleanField()
 
     class Meta:
