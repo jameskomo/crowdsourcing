@@ -36,14 +36,14 @@ def profile(request):
 # Freelancer Data Form
 def freelancer_data(request):
     if request.method == 'POST':
-        freelancer_form = FreelancerDataForm(request.POST)
+        freelancer_form = FreelancerDataForm(request.POST, request.FILES)
         if freelancer_form.is_valid():
             freelancer_form.save()
             bio = form.cleaned_data.get('bio')
             skills = form.cleaned_data.get('skills')
             availability = form.cleaned_data.get('availability')
             completed = form.cleaned_data.get('completed')
-            documents = form.cleaned_data.get('documents')
+            documents = form.cleaned_data.get('documents', upload_to='freelancer_documents/')
             messages.success(request, f'Your bio data has been created! You are now able to update your freelancer information and apply jobs')
             return redirect('login')
     else:

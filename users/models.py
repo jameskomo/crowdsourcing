@@ -44,7 +44,7 @@ class Grade(models.Model):
 
 
     def __str__(self):
-        return f'{self.user.username} Freelancer'
+        return f'{self.name} Grade'
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
