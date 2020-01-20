@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="content-section">
+    <!-- <div class="content-section">
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
@@ -21,5 +21,11 @@
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
       </form>
-    </div>
+    </div> -->
+    <form method="post">
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+      <button type="submit">Save changes</button>
+    </form>
 {% endblock content %}

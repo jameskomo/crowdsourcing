@@ -4,9 +4,9 @@ from PIL import Image
 
 
 role = (
-        ('1', 'Freelancer'),
-        ('2', 'Project Owner'),
-        ('3', 'Admin'),)
+        ('1', 'Admin'),
+        ('2', 'Freelancer'),
+        ('3', 'Project Owner'),)
 
 
 class Profile(models.Model):
