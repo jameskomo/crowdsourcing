@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('freelance_app.urls')),
     path('profile/', user_views.profile, name='profile'),
+    path('freelancer_data/', user_views.freelancer_data, name='freelancer_data'),
     path('accounts/', include('allauth.urls')),
     
 ]
