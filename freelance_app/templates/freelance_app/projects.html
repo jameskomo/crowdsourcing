@@ -1,0 +1,45 @@
+{% extends 'freelance_app/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>{{msg}}</h3>
+<h2>List of Projects</h2>
+<table class="table table-striped" >
+    <thead>
+    <td>PROJECT ID</td>
+    <td>PROJECT NAME</td>
+    <td>DESCRIPTION</td>
+    <td>PROJECT OWNER</td>
+    <td>DATE POSTED</td>
+    <td>COMPLETED?</td>
+    <td>DEADLINE</td>
+    <td>NO.OF TASKS</td>
+    <td>PROJECT TASKS</td>
+
+    </thead>
+
+    {% for project in projects_list %}
+    
+    <tr>
+        <td>{{project.id }}</td>
+        <td>{{project.project_name}}</td>
+        <td>{{project.description}}</td>
+        <td>{{project.Owner}}</td>
+        <td>{{project.postenOn}}</td>
+        <td>{{project.isCompleted}}</td>
+        <td>{{project.deadline}}</td>
+      
+
+
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Tasks</h1>
+{% for task in project_tasks %}
+<td>{{project.task.task_name}}</td>
+<td>{{task.task_name}}</td>
+{% endfor %}
+
+<hr>
+<h1>Number of Projects: {{number_of_projects}}</h1>
+{% endblock %}

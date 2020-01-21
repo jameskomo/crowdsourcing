@@ -8,6 +8,12 @@ role = (
         ('2', 'Freelancer'),
         ('3', 'Project Owner'),)
 
+grades = (
+        ('1', 'Grade One'),
+        ('2', 'Grade Two'),
+        ('2', 'Grade Three'),
+        ('2', 'Grade Four'),)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -38,11 +44,7 @@ class FreelancerData(models.Model):
         super().save(*args, **kwargs)
 
 class Grade(models.Model):
-    name = models.CharField(max_length=10)
-
+    grade_name = models.CharField(max_length=20, choices=role, default='Freelancer')
 
     def __str__(self):
-        return f'{self.name} Grade'
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        return self.grade_name
