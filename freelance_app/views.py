@@ -10,7 +10,6 @@ def projects(request):
     number_of_projects=Project.objects.all().count
     # project_tasks=Task.objects.filter(project_id__in=Project.objects.all()).order_by('latest_submission_time')
     project_tasks=Task.objects.all()
-    print(project_tasks)
     context={
         'projects_list': projects_list,
         'number_of_projects':number_of_projects,

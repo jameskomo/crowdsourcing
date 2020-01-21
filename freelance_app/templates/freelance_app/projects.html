@@ -27,18 +27,13 @@
         <td>{{project.postenOn}}</td>
         <td>{{project.isCompleted}}</td>
         <td>{{project.deadline}}</td>
+        <td>{{project.task.task_name}}</td>
       
 
 
     </tr>
     {% endfor %}
 </table>
-
-<h1>Tasks</h1>
-{% for task in project_tasks %}
-<td>{{project.task.task_name}}</td>
-<td>{{task.task_name}}</td>
-{% endfor %}
 
 <hr>
 <h1>Number of Projects: {{number_of_projects}}</h1>
