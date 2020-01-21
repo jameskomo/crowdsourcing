@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body data-ix="full-opacity-on-load" class="body">
+    <div class="d1">
+		<div class="white">
+			<h1 style="color: white;">Edit Task</h1>
+				<h1 style="color: white;">{{task.task_name}} <br></h1>
+				<p style="color: white; font-size: 20px;">Updating task to {{project.project_name}} </p>
+		</div>
+
+
+
+		<div class="d2">
+		<form method="post" >
+			{% csrf_token %}
+			<label><h3 style="color: black; font-weight:normal">Choose a name for the Task</h3></label>
+
+      <input class="in" type="text" id="name" name="name" value="{{task.task_name}}" tabindex="1" autofocus /><br><br>
+			<label><h3 style="color: black; font-weight:normal">Tell us more about your task</h3>
+			<p style="font-size:15px;color:black; font-weight:normal;">Start with a bit about yourself or your business, and include an overview of what you need done.</p></label><br>
+
+      <textarea class="txt" id="message" name="description" value="" tabindex="5">{{task.task_description}}</textarea> <br><br>
+
+  		<label><h3 style="color: black; font-weight:normal">Do you want to change its date?</h3></label>
+			<input class="ddl" style="color: black; font-weight:normal" id="date" type="date" name="deadline" value="{{task.deadline|date:"Y-m-d" }}">
+			<br><br>
+			<input type="submit" value="Edit Task">
+		</form>
+		</div>
+	</div>
+</body>
+</html>

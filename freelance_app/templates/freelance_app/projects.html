@@ -9,11 +9,14 @@
               <small class="text-muted">Posted On: {{ project.postedOn|date:"F d, Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'project-detail' project.id %}">{{ project.project_name }}</a></h2>
-            <p class="article-content">{{ project.description }}</p>
+            <p class="article-content">Description: {{ project.description }}</p>
             <p class="article-content">Due by: {{ project.deadline }}</p>
           </div>
         </article>
         
     {% endfor %}
     {% endif %}
+    {% for task in tasks %}
+        <h1>{{task.id}}</h1>
+    {% endfor %}
 {% endblock content %}

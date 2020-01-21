@@ -1,26 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Project, Task
-
-# Create your views here.
-def home(request):
-    return render(request, 'freelance_app/base.html')
-
-def projects(request):
-    projects_list = Project.objects.all()
-    number_of_projects=Project.objects.all().count
-    number_of_tasks=Task.objects.all().count
-    # project_tasks=Task.objects.filter(project_id__in=Project.objects.all()).order_by('latest_submission_time')
-    project_tasks=Task.objects.all() 
-    context={
-        'projects_list': projects_list,
-        'number_of_projects':number_of_projects,
-        'project_tasks': project_tasks,
-    }
-    return render(request, "freelance_app/projects.html", context)
-
-
-# VIEW FUNCTIONS
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView,
@@ -33,7 +12,28 @@ from django.contrib.auth.models import User
 from .models import *
 
 
+# Create your views here.
+def home(request):
+    return render(request, 'freelance_app/base.html')
 
+def projects(request, project_id, task_id):
+    projects_list = Project.objects.all()
+    number_of_projects=Project.objects.all().count
+    number_of_tasks=Task.objects.all().count
+    tasks = Task.objects.get(id=task_id, project=project_id)
+    
+    # project_tasks=Task.objects.filter(project_id__in=Project.objects.all()).order_by('latest_submission_time')
+    project_tasks=Task.objects.all() 
+    context={
+        'projects_list': projects_list,
+        'number_of_projects':number_of_projects,
+        'project_tasks': project_tasks,
+        'tasks': tasks
+    }
+    return render(request, "freelance_app/projects.html", context)
+
+
+# VIEW FUNCTIONS
 
 
 # List Views for Project, Tasks...
@@ -91,3 +91,20 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
+def tasks_edit(request, project_id, task_id):
+    if request.user.is_authenticated:
+        task = Task.objects.get(id=task_id, project=project_id)
+        print(task)
+        project = Project.objects.get(id=project_id)
+        context = {}
+        context['task'] = task
+        context['project'] = project
+        if request.method == 'POST':
+            task.task_name = request.POST['name']
+            task.task_description = request.POST['description']
+            task.save()
+            return redirect("kinetic-projects", project_id, task_id)
+        project = Project.objects.get(id=project_id)
+        return render(request,'freelance_app/edittask.html',context)
+    return redirect("kinetic-projects", project_id, task_id)
