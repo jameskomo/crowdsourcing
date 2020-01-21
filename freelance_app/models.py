@@ -16,7 +16,7 @@ class Task(models.Model):
     task_link = models.URLField(blank=True)
     latest_submission_time = models.DateTimeField(blank=True, null=True)
     isCompleted = models.BooleanField(default=False)
-    deadline = models.DateField(blank=False)
+    deadline = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.task_name
@@ -27,7 +27,7 @@ class Project(models.Model):
     postedOn = models.DateTimeField(auto_now_add=True, blank=True)
     Owner = models.ForeignKey(User, on_delete=models.CASCADE)
     isCompleted = models.BooleanField(default=False)
-    deadline = models.DateField(blank=False)
+    deadline = models.DateTimeField(blank=True, null=True)
     tasks=models.ForeignKey(Task, on_delete=models.CASCADE)
     task_count = models.IntegerField(default=0)
 
