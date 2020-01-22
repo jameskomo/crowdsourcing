@@ -24,11 +24,17 @@ def projects(request, project_id, task_id):
     context={
         'projects_list': projects_list,
         'number_of_projects':number_of_projects,
-        'project_tasks': project_tasks,
-        'tasks': tasks
     }
     return render(request, "freelance_app/projects.html", context)
 
+def tasks(request, project_id, task_id):
+    tasks_list = Task.objects.all()
+    number_of_tasks=Task.objects.all().count
+    context={
+        'tasks_list': tasks_list,
+        'number_of_tasks':number_of_projects,
+    }
+    return render(request, "freelance_app/projects.html", context)
 
 # VIEW FUNCTIONS
 
@@ -46,7 +52,7 @@ class ProjectListView(ListView):
 
 class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Project
-    fields = ['project_name', 'description', 'deadline', 'tasks']
+    fields = ['project_name', 'description', 'deadline']
     success_url="/projects/"
 
     def form_valid(self, form):
@@ -75,7 +81,7 @@ class ProjectDetailView(DetailView):
 # Create Views for Project, Tasks.....
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
-    fields = ['project_name', 'description', 'Owner', 'deadline', 'tasks']
+    fields = ['project_name', 'description', 'Owner', 'deadline']
     success_url="/projects/"
 
     def form_valid(self, form):
@@ -100,6 +106,7 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class TaskCreate(CreateView):
     model = Task
     fields = ['project', 'task_name', 'task_description', 'latest_submission_time', 'deadline','isCompleted']
+    success_url="/task/add"
 
 class TaskUpdate(UpdateView):
     model = Task
