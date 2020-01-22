@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from .models import Task, Grade, Project
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.db.models import Q
 
 
 # Create your views here.
@@ -117,4 +118,16 @@ class TaskDelete(DeleteView):
     success_url = reverse_lazy('profile-list')
 class TaskDetail(DetailView):
     model=Task
+
+# SEARCH VIEWS
+class ProjectResultsView(ListView):
+    model = Project
+    template_name = 'project_list.html'
+    
+    def get_queryset(self): 
+        query = self.request.GET.get('q')
+        project_list = Project.objects.filter(
+            Q(project_name__icontains=query) | Q(description__icontains=query)
+        )
+        return project_list
 

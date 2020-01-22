@@ -21,12 +21,9 @@ def profile(request):
             messages.error(request, _('Please correct the error below.'))
 
     else:
-        try:
             p_form = ProfileUpdateForm(instance=request.user.profile)
             
-        except User.DoesNotExist:
-            print ("Sorry, this user has no profile")
-
+            
     context = {
         'p_form': p_form
     }

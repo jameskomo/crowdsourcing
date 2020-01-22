@@ -1,0 +1,13 @@
+
+{% extends "freelance_app/base.html" %}
+{% block content %}
+<ul>
+    {% for project in project_list %}
+      <li>
+        {{ project.project_name }}, {{ project.description }}
+      </li>
+    {% empty %}
+    <li>No project with that name.</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

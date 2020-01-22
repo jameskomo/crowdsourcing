@@ -7,6 +7,7 @@ from .views import (
     ProjectCreateView,
     ProjectUpdateView,
     ProjectDeleteView,
+    ProjectResultsView,
     
 )
 
@@ -26,5 +27,9 @@ urlpatterns = [
     path('task/<int:pk>/delete/', TaskDelete.as_view(), name='task-delete'),
     path('task/<int:pk>/', TaskDetail.as_view(), name='task-detail'),
     # Task URLS End
+
+    # Search on Page
+    path('project_search/', ProjectResultsView.as_view(), name='search_projects'),
+    # Search End
     
 ]
