@@ -14,7 +14,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['image', 'role']
+        fields = ['image', 'interested_grades']
 
 class FreelancerDataForm(forms.ModelForm):
 
