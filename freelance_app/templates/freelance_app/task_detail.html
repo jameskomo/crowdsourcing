@@ -1,0 +1,18 @@
+{% extends "freelance_app/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+      <h2 class="article-title">Name: {{ object.task_name}}</h2>
+      <p class="article-content">Description: {{ object.task_description }}</p>
+      {% if object.Owner == user %}
+      <div>
+        <a class="btn btn-secondary" href="{% url 'project-update' object.id %}">Update</a>
+        <a  href="{% url 'task-add' %}">Add Tasks</a>
+        <a  href="{% url 'kinetic-projects' %}">Tasks Done</a>
+        <a class="btn btn-danger" href="{% url 'project-delete' object.id %}">Delete</a>
+      </div>
+    {% endif %}
+    </div>
+    
+  </article>
+{% endblock content %}

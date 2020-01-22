@@ -115,4 +115,6 @@ class TaskUpdate(UpdateView):
 class TaskDelete(DeleteView):
     model = Task
     success_url = reverse_lazy('profile-list')
+class TaskDetail(DetailView):
+    model=Task
 
