@@ -21,11 +21,6 @@ def home(request):
 def projects(request, project_id, task_id):
     projects_list = Project.objects.all()
     number_of_projects=Project.objects.all().count
-    number_of_tasks=Task.objects.all().count
-    tasks = Task.objects.get(id=task_id, project=project_id)
-    
-    # project_tasks=Task.objects.filter(project_id__in=Project.objects.all()).order_by('latest_submission_time')
-    project_tasks=Task.objects.all() 
     context={
         'projects_list': projects_list,
         'number_of_projects':number_of_projects,
@@ -104,11 +99,11 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 # Task Views
 class TaskCreate(CreateView):
     model = Task
-    fields = ['task_name', 'task_description', 'rating', 'amount', 'latest_submission_time', 'isCompleted', 'deadline']
+    fields = ['project', 'task_name', 'task_description', 'latest_submission_time', 'deadline','isCompleted']
 
 class TaskUpdate(UpdateView):
     model = Task
-    fields = ['task_name', 'task_description', 'rating', 'amount', 'latest_submission_time', 'isCompleted', 'deadline']
+    fields = ['project','task_name', 'task_description', 'latest_submission_time', 'deadline', 'isCompleted']
 
 class TaskDelete(DeleteView):
     model = Task
