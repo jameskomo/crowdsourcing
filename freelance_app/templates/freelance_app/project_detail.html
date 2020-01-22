@@ -6,7 +6,10 @@
       <p class="article-content">Description: {{ object.description }}</p>
       <p class="article-content">Posted On: {{ object.postedOn }}</p>
       <p class="article-content">Complete?: {{ object.completed }}</p>
-      <p class="article-content">Tasks: {{ object.tasks }}</p>
+      <h3><b>Tasks</b></h3>
+      {% for task in task_list %}
+      <p class="article-content">{{ task }}</p>
+      {% endfor %}
       {% if object.Owner == user %}
       <div>
         <a class="btn btn-secondary" href="{% url 'project-update' object.id %}">Update</a>
@@ -14,5 +17,6 @@
       </div>
     {% endif %}
     </div>
+    
   </article>
 {% endblock content %}

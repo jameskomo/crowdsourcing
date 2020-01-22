@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 
 
+
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -51,3 +52,4 @@ def freelancer_data(request):
     return render(request, 'freelancer_data.html', {'freelancer_form': freelancer_form})
 
 # Freelancer Data End
+

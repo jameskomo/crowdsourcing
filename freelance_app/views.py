@@ -9,7 +9,9 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.models import User
-from .models import *
+from .models import Task, Grade, Project
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 # Create your views here.
@@ -63,9 +65,16 @@ class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-# Detail Views for Post, Business, Neighborhood and Contact
+# Detail Views for Project, Tasks....
 class ProjectDetailView(DetailView):
     model = Project
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the Tasks
+        context['task_list'] = Task.objects.all()
+        return context
 
 
 # Create Views for Project, Tasks.....
@@ -92,19 +101,16 @@ class ProjectDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-def tasks_edit(request, project_id, task_id):
-    if request.user.is_authenticated:
-        task = Task.objects.get(id=task_id, project=project_id)
-        print(task)
-        project = Project.objects.get(id=project_id)
-        context = {}
-        context['task'] = task
-        context['project'] = project
-        if request.method == 'POST':
-            task.task_name = request.POST['name']
-            task.task_description = request.POST['description']
-            task.save()
-            return redirect("kinetic-projects", project_id, task_id)
-        project = Project.objects.get(id=project_id)
-        return render(request,'freelance_app/edittask.html',context)
-    return redirect("kinetic-projects", project_id, task_id)
+# Task Views
+class TaskCreate(CreateView):
+    model = Task
+    fields = ['task_name', 'task_description', 'rating', 'amount', 'latest_submission_time', 'isCompleted', 'deadline']
+
+class TaskUpdate(UpdateView):
+    model = Task
+    fields = ['task_name', 'task_description', 'rating', 'amount', 'latest_submission_time', 'isCompleted', 'deadline']
+
+class TaskDelete(DeleteView):
+    model = Task
+    success_url = reverse_lazy('profile-list')
+

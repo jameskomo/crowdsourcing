@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from freelance_app.views import TaskCreate, TaskDelete, TaskUpdate
 from .views import (
     ProjectListView,
     ProjectDetailView,
@@ -18,6 +19,11 @@ urlpatterns = [
     path('project/new/', ProjectCreateView.as_view(), name='project-create'),
     path('project/<int:pk>/update/', ProjectUpdateView.as_view(), name='project-update'),
     path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project-delete'),
-    path('<int:project_id>/task_edit/<int:task_id>/', views.tasks_edit, name='task_edit'),
+
+    # Task URLS
+    path('task/add/', TaskCreate.as_view(), name='task-add'),
+    path('task/<int:pk>/', TaskUpdate.as_view(), name='task-update'),
+    path('task/<int:pk>/delete/', TaskDelete.as_view(), name='task-delete')
+    # Task URLS End
     
 ]
