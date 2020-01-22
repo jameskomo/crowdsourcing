@@ -18,7 +18,7 @@ grades = (
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='profile_pics')
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
     role = models.CharField(max_length=25,choices=role, default='Freelancer')
 
     def save(self, *args, **kwargs):
