@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Profile, Grade, FreelancerData
+from .models import Profile, Grade
 
 
 admin.site.register(Profile)
 admin.site.register(Grade)
-admin.site.register(FreelancerData)
+

@@ -13,13 +13,21 @@ role = (
 grades = (
         ('1', 'Grade One'),
         ('2', 'Grade Two'),
-        ('2', 'Grade Three'),
-        ('2', 'Grade Four'),)
+        ('3', 'Grade Three'),
+        ('4', 'Grade Four'),)
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    phone_number=models.CharField(default='DEFAULT VALUE', unique=True, max_length=14)
+    email=models.EmailField(unique=True, default='DEFAULT EMAIL')
+    location=models.CharField(default='DEFAULT VALUE', max_length=30)
+    Age=models.PositiveIntegerField(default=0)
+    skills=models.TextField(default='DEFAULT VALUE', max_length=100)
+    experience=models.TextField(max_length=100, default='DEFAULT VALUE')
+    resume=models.FileField(default='DEFAULT VALUE', upload_to='freelancer_docs')
+    certificates=models.FileField(default='DEFAULT VALUE', upload_to='freelancer_certs')
     interested_grades=MultiSelectField(choices=grades,max_choices=2,max_length=3, default=1)
 
 
@@ -38,16 +46,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
-class FreelancerData(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-
-    def __str__(self):
-        return f'{self.user.username} Freelancer'
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
 class Grade(models.Model):
     grade_name = models.CharField(max_length=20, choices=role, default='Freelancer')
