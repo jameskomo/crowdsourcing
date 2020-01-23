@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Grade
 
+
 availability = (
         ('1', 'Contract'),
         ('2', 'Hourly'),
@@ -11,7 +12,7 @@ availability = (
 
 
 class ProfileUpdateForm(forms.ModelForm):
-
+    success_url='/profile/'
     class Meta:
         model = Profile
         fields = ['image','phone_number','location', 'Age','skills','experience','resume', 'certificates', 'interested_grades']

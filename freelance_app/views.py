@@ -82,7 +82,7 @@ class ProjectDetailView(DetailView):
 # Create Views for Project, Tasks.....
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
-    fields = ['project_name', 'description', 'Owner', 'deadline']
+    fields = ['project_name', 'description', 'deadline']
     success_url="/projects/"
 
     def form_valid(self, form):
