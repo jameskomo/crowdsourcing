@@ -12,8 +12,8 @@ availability = (
 
 
 class ProfileUpdateForm(forms.ModelForm):
-    success_url='/profile/'
+    success_url='/kinetic-projects/'
     class Meta:
         model = Profile
-        fields = ['image','phone_number','location', 'Age','skills','experience','resume', 'certificates', 'interested_grades']
+        fields = ['image','phone_number','email', 'location', 'Age','skills','experience','resume', 'certificates', 'interested_grades']
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.urls import reverse
 from multiselectfield import MultiSelectField
+from .validators import validate_file_extension
 
 
 role = (
@@ -26,8 +27,8 @@ class Profile(models.Model):
     Age=models.PositiveIntegerField(default=0)
     skills=models.TextField(default='Enter Skills Here...', max_length=100)
     experience=models.TextField(max_length=100, default='Enter Experience Here...')
-    resume=models.FileField(default='Attach Resume', upload_to='freelancer_docs')
-    certificates=models.FileField(default='Attach Certs', upload_to='freelancer_certs')
+    resume=models.FileField(default='Attach Resume', upload_to='freelancer_docs', validators=[validate_file_extension])
+    certificates=models.FileField(default='Attach Certs', upload_to='freelancer_certs', validators=[validate_file_extension])
     interested_grades=MultiSelectField(choices=grades,max_choices=2,max_length=3, default=1)
 
 

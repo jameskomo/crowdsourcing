@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from users.models import Grade
+from users.validators import validate_file_extension
 
 
 
@@ -12,6 +13,7 @@ class Project(models.Model):
     isCompleted = models.BooleanField(default=False)
     deadline = models.DateTimeField(blank=True, null=True)
     task_count = models.IntegerField(default=0)
+    attachements=models.FileField(default='Attach Workdone', upload_to='tasks_docs', validators=[validate_file_extension])
 
 
     def __str__(self):

@@ -12,6 +12,7 @@
             <h2><a class="article-title" href="{% url 'project-detail' project.id %}">{{ project.project_name }}</a></h2>
             <p class="article-content">Description: {{ project.description }}</p>
             <p class="article-content">Due by: {{ project.deadline }}</p>
+            <p class="article-content">Attachments: {{ project.attachments }}</p>
           </div>
         </article>
         
