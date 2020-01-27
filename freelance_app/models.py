@@ -13,7 +13,7 @@ class Project(models.Model):
     isCompleted = models.BooleanField(default=False)
     deadline = models.DateTimeField(blank=True, null=True)
     task_count = models.IntegerField(default=0)
-    attachements=models.FileField(default='Attach Workdone', upload_to='tasks_docs', validators=[validate_file_extension])
+    attachments=models.FileField(default='Attach Workdone', upload_to='tasks_docs', validators=[validate_file_extension])
 
 
     def __str__(self):
@@ -30,6 +30,7 @@ class Task(models.Model):
     latest_submission_time = models.DateTimeField(blank=True, null=True)
     isCompleted = models.BooleanField(default=False)
     deadline = models.DateTimeField(blank=True, null=True)
+    task_attachments=models.FileField(default='Attach Workdone', upload_to='tasks_docs', validators=[validate_file_extension])
 
     def __str__(self):
         return self.task_name

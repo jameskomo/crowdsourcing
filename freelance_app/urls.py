@@ -14,7 +14,6 @@ from .views import (
 
 urlpatterns = [
     path('', views.home, name='kinetic-home'),
-    # path('projects/', views.projects, name='kinetic-projects'),
     path('projects/', ProjectListView.as_view(), name='kinetic-projects'),
     path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('project/new/', ProjectCreateView.as_view(), name='project-create'),
